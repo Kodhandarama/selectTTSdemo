@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "StyleMoE Demo",
-  description: "StyleMoE: Style Mixture of Experts for Expressive Text-To-Speech Synthesis Demo",
+  title: "SelectTTS Demo",
+  description: "SelectTTS: Synthesizing anyone's voice via discrete unit-based frame selection",
 };
 
 export default function RootLayout({

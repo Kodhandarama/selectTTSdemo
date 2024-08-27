@@ -4,101 +4,120 @@ import Audio from "@/components/Audio";
 
 const references = [
   {
-    citation: "R. Huang, Y. Ren, J. Liu, C. Cui, and Z. Zhao, “Generspeech: Towards style transfer for generalizable out-of-domain text-to- speech,” Advances in Neural Information Processing Systems, vol. 35, pp. 10 970–10 983, 2022.",
-    link: "https://arxiv.org/abs/2205.07211"
+    citation: "Casanova, E., Davis, K., Gölge, E., Göknar, G., Gulea, I., Hart, L., ... & Weber, J. (2024). XTTS: a Massively Multilingual Zero-Shot Text-to-Speech Model. arXiv preprint arXiv:2406.04904.",
+    link: "https://arxiv.org/abs/2406.04904"
   },
   {
-    citation: "N. Shazeer, A. Mirhoseini, K. Maziarz, A. Davis, Q. Le, G. Hinton, and J. Dean, “Outrageously large neural networks: The sparsely-gated mixture-of-experts layer,” arXiv preprint arXiv:1701.06538, 2017.",
-    link: "https://arxiv.org/abs/1701.06538"
+    citation: "Wang, C., Chen, S., Wu, Y., Zhang, Z., Zhou, L., Liu, S., ... & Wei, F. (2023). Neural codec language models are zero-shot text to speech synthesizers. arXiv preprint arXiv:2301.02111.",
+    link: "https://arxiv.org/abs/2301.02111"
+  },
+  {
+    citation: "Casanova, E., Weber, J., Shulby, C. D., Junior, A. C., Gölge, E., & Ponti, M. A. (2022, June). Yourtts: Towards zero-shot multi-speaker tts and zero-shot voice conversion for everyone. In International Conference on Machine Learning (pp. 2709-2720). PMLR.",
+    link: "https://proceedings.mlr.press/v162/casanova22a.html"
   }
 ]
 
-function getRowData(dataset: string, type: string, num: number) {
-  const file_name = `${type}_${num}`
+const inspiration = [
+
+  {
+    citation: "Baas, M., van Niekerk, B., & Kamper, H. (2023). Voice conversion with just nearest neighbors. arXiv preprint arXiv:2305.18975.",
+    link: "https://arxiv.org/abs/2305.18975"
+  }
+]
+
+function getRowDataMOS(dataset: string, spk: string, num: string) {
+  const file_name = `gen_${spk}_${num}`
 
 
   return {
-    "Reference Audio": <Audio path={`samples/${dataset}/reference/${type}/${file_name}.wav`} />,
-    "Baseline": <Audio path={`samples/${dataset}/baseline/${type}/${file_name}.wav`} />,
-    "StyleEnsemble experts=2": <Audio path={`samples/${dataset}/ensemble_e2/${type}/${file_name}.wav`} />,
-    "StyleMoE experts=2, k=1": <Audio path={`samples/${dataset}/moe_e2_k1/${type}/${file_name}.wav`} />,
+    "Ground Truth": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
+    "X-TTS": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
+    "VALL-E": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
+    "YourTTS": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />,
+    "SelectTTS w/o sub-sequence match": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />,
+    "SelectTTS with sub-sequence match": <Audio path={`samples/${dataset}/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />
   }
 }
 
+function getRowDataSMOS(dataset: string, spk: string, num: string) {
+  const file_name = `gen_${spk}_${num}`
 
+
+  return {
+    "Target Speaker": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
+    "X-TTS": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
+    "VALL-E": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
+    "YourTTS": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />,
+    "SelectTTS w/o sub-sequence match": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />,
+    "SelectTTS with sub-sequence match": <Audio path={`samples/${dataset}/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />
+  }
+}
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-y-8 mx-auto px-8 md:px-48 lg:64 py-8 sm:py-16">
       <Section
-        title="Style Mixture of Experts for Expressive Text-To-Speech Synthesis"
+        title="SelectTTS: Synthesizing anyone's voice via discrete unit-based frame selection"
         body=""
       />
       <Section
         title="Abstract"
-        body="Recent advances in style transfer text-to-speech (TTS) have improved the expressiveness of synthesized speech. Despite these advancements, encoding stylistic information from diverse and unseen reference speech remains challenging. This paper introduces StyleMoE, an approach that divides the embedding space, modeled by the style encoder, into tractable subsets handled by style experts. The proposed method replaces the style encoder in a TTS system with a Mixture of Experts (MoE) layer. By utilizing a gating network to route reference speeches to different style experts, each expert specializes in aspects of the style space during optimization. Our experiments objectively and subjectively demonstrate the effectiveness of our proposed method in increasing the coverage of the style space for diverse and unseen styles. This approach can enhance the performance of existing state-of-the-art style transfer TTS models, marking the first study of MoE in style transfer TTS to our knowledge"
+        body="We design a simple alternative to this. We propose SelectTTS, a novel method to select the appropriate frames from the target speaker and decode using frame-level self-supervised learning (SSL) features. We show that this approach can effectively capture speaker characteristics for unseen speakers, and achieves comparable results to other multi-speaker TTS frameworks in both objective and subjective metrics. With SelectTTS, we show that frame selection from the target speaker's speech is a direct way to achieve generalization in unseen speakers."
+
       />
 
       <Section
         title="Purposed Method"
       >
-        <img src="figures/stylemoe.png" alt="StyleMoE" />
+        <img src="figures/SelectTTS_v1.png" alt="SelectTTS" />
+      
         <div className="mt-4">
           <p className="text-sm sm:text-md italic text-justify">
-            Figure 1: Architecture of StyleMoE. Subfigure (b) illustrates the integration of StyleMoE into the Style Adaptor of GenerSpeech [1]. Subfigure (c) depicts the StyleMoE layer [2], wherein each Style Expert block is a style reference encoder.
+          Proposed SelectTTS framework with the frame-selection method. In the frame selection, frames z<sub>1</sub>,z<sub>2</sub>,z<sub>3</sub>,z<sub>4</sub> are chosen through subsequence matching and frames z<sub>7</sub>, z<sub>9</sub>,z<sub>6</sub> and z<sub>10</sub> are chosen via inverse k-means sampling
           </p>
         </div>
       </Section>
 
 
       <Section
-        title="ESD Speech Samples: Parallel"
+        title="Observe the naturalness :)"
       >
         <Table
           data={[
-            getRowData("esd", "parallel", 5),
-            getRowData("esd", "parallel", 7),
-            getRowData("esd", "parallel", 12),
+            getRowDataMOS("generated_samples", "4446", "0000"),
+            getRowDataMOS("generated_samples", "4446", "0010"),
+            getRowDataMOS("generated_samples", "4446", "0016"),
           ]}
         />
       </Section>
+
+    
 
       <Section
-        title="ESD Speech Samples: Non-Parallel"
+        title="Observe the speaker similarity"
       >
         <Table
           data={[
-            getRowData("esd", "nonparallel", 13),
-            getRowData("esd", "nonparallel", 14),
-            getRowData("esd", "nonparallel", 15),
+            getRowDataMOS("generated_samples", "4446", "0000"),
+            getRowDataMOS("generated_samples", "4446", "0010"),
+            getRowDataMOS("generated_samples", "4446", "0016"),
           ]}
         />
       </Section>
 
+     
       <Section
-        title="VCTK Speech Samples: Parallel"
-      >
-        <Table
-          data={[
-            getRowData("vctk", "parallel", 1),
-            getRowData("vctk", "parallel", 7),
-            getRowData("vctk", "parallel", 14),
-          ]}
-        />
+      title="Inspiration credit">
+      <ul className="flex flex-col gap-y-4">
+          {inspiration.map(({ citation, link }, index) => (
+            <li key={index}>
+              <a className="text-md sm:text-lg hover:underline transition-all" href={link}>
+                [{index + 1}] {citation}
+              </a>
+            </li>
+          ))}
+        </ul>
       </Section>
-
-      <Section
-        title="VCTK Speech Samples: Non-Parallel"
-      >
-        <Table
-          data={[
-            getRowData("vctk", "nonparallel", 14),
-            getRowData("vctk", "nonparallel", 6),
-            getRowData("vctk", "nonparallel", 15),
-          ]}
-        />
-      </Section>
-
 
       <Section
         title="References"
