@@ -5,6 +5,6 @@ const nextConfig = {
     }, 
     experimental: { images: { unoptimized: true } }, 
     output: 'export',
-    basePath: "/styleMoE" 
+    basePath: "/selectTTSdemo" 
 }
 module.exports = nextConfig
