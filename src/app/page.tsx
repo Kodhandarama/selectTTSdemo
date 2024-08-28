@@ -34,8 +34,8 @@ function getRowDataMOS(dataset: string, spk: string, num: string) {
     "X-TTS": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
     "VALL-E": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
     "YourTTS": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />,
-    "SelectTTS w/o sub-sequence match": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />,
-    "SelectTTS with sub-sequence match": <Audio path={`samples/${dataset}/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />
+    "SelectTTS (no sub-sequence)": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />,
+    "SelectTTS (with sub-sequence)": <Audio path={`samples/${dataset}/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />
   }
 }
 
@@ -48,8 +48,50 @@ function getRowDataSMOS(dataset: string, spk: string, num: string) {
     "X-TTS": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
     "VALL-E": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
     "YourTTS": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />,
-    "SelectTTS w/o sub-sequence match": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />,
-    "SelectTTS with sub-sequence match": <Audio path={`samples/${dataset}/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />
+    "SelectTTS (no sub-sequence)": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />,
+    "SelectTTS (with sub-sequence)": <Audio path={`samples/${dataset}/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />
+  }
+}
+
+
+function getRowDataRefdur(dataset: string, spk: string, num: string) {
+  const file_name = `gen_${spk}_${num}`
+
+
+  return {
+    "Ground Truth": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
+    "30 seconds": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
+    "1 minute": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
+    "3 minutes": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />,
+    "5 Minutes": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />
+  
+  }
+}
+
+function getRowDataPrematch(dataset: string, spk: string, num: string) {
+  const file_name = `gen_${spk}_${num}`
+
+
+  return {
+    "Ground Truth": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
+    "Vocoder (no prematched fine-tuning)": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
+    "Vocoder (prematched fine-tuning)": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />
+
+  }
+}
+
+
+function getRowDataTempSampl(dataset: string, spk: string, num: string) {
+  const file_name = `gen_${spk}_${num}`
+
+
+  return {
+    "Ground Truth": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
+    "SelectTTS (only inv k-means (rand))": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
+    "SelectTTS (only inv k-means (avg))": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
+    "SelectTTS (inv k-means (rand) + sub-match)": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
+    "SelectTTS (inv k-means (avg) + sub-match)": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />
+    
   }
 }
 
@@ -105,7 +147,43 @@ export default function Home() {
         />
       </Section>
 
+
+      <Section
+        title="How much reference speech do we need?"
+      >
+        <Table
+          data={[
+            getRowDataRefdur("generated_samples", "4446", "0000"),
+            getRowDataRefdur("generated_samples", "4446", "0010"),
+            getRowDataRefdur("generated_samples", "4446", "0016"),
+          ]}
+        />
+      </Section>
      
+      <Section
+        title="Effect of temperature sampling"
+      >
+        <Table
+          data={[
+            getRowDataTempSampl("generated_samples", "4446", "0000"),
+            getRowDataTempSampl("generated_samples", "4446", "0010"),
+            getRowDataTempSampl("generated_samples", "4446", "0016"),
+          ]}
+        />
+      </Section>
+
+      <Section
+        title="Effect of vocoder fine-tuning"
+      >
+        <Table
+          data={[
+            getRowDataPrematch("generated_samples", "4446", "0000"),
+            getRowDataPrematch("generated_samples", "4446", "0010"),
+            getRowDataPrematch("generated_samples", "4446", "0016"),
+          ]}
+        />
+      </Section>
+
       <Section
       title="Inspiration credit">
       <ul className="flex flex-col gap-y-4">
@@ -120,7 +198,7 @@ export default function Home() {
       </Section>
 
       <Section
-        title="References"
+        title="Baselines"
       >
         <ul className="flex flex-col gap-y-4">
           {references.map(({ citation, link }, index) => (
