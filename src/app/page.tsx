@@ -128,7 +128,7 @@ export default function Home() {
         <img
     src="figures/Tokenizers.png"  // Replace with the path to your second image
     alt="Tokenizers"
-    style={{ width: '30%', maxWidth: '500px', height: 'auto' }}
+    style={{ width: '40%', maxWidth: '600px', height: 'auto' }}
 
   />
   <img
