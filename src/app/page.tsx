@@ -111,14 +111,14 @@ export default function Home() {
         </div>
         <div>
      
-      {/* Button 1: Internal Link to Another Page within the App */}
-      <Link href="">
-        <button>paper pre-print</button>
-      </Link>
 
       {/* Button 2: External Link to Google */}
-      <a href="" target="_blank" rel="noopener noreferrer">
-        <button>official implementation</button>
+      <Link href="/about" passHref>
+        <button style={{ marginRight: '10px' }}>Paper pre-print</button>
+      </Link>
+      {/* Button 2: External Link to Google */}
+      <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+        <button>Official implementation - coming soon</button>
       </a>
     </div>
       <Section
