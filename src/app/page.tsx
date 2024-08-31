@@ -105,7 +105,7 @@ export default function Home() {
   body=" Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman" 
 />
 <div className="mt-0">
-          <p className="text-sm sm:text-md italic text-justify">
+          <p className="text-sm sm:text-md italic text-justify leading-tight">
           *Equal contribution
           </p>
         </div>
@@ -139,7 +139,7 @@ export default function Home() {
   
 </div>
         <div className="mt-4">
-          <p className="text-sm sm:text-md italic text-justify leading-tight">
+          <p className="text-sm sm:text-md italic text-justify">
           Proposed SelectTTS framework with the frame-selection method. In the frame selection, frames z<sub>1</sub>,z<sub>2</sub>,z<sub>3</sub>,z<sub>4</sub> are chosen through subsequence matching and frames z<sub>7</sub>, z<sub>9</sub>,z<sub>6</sub> and z<sub>10</sub> are chosen via inverse k-means sampling
           </p>
         </div>
