@@ -1,6 +1,7 @@
 import Section from "@/components/Section";
 import Table from "@/components/Table";
 import Audio from "@/components/Audio";
+import Link from 'next/link';
 
 const references = [
   {
@@ -99,16 +100,27 @@ function getRowDataTempSampl(dataset: string, spk: string, num: string) {
 export default function Home() {
   return (
     <div className="flex flex-col gap-y-8 mx-auto px-8 md:px-48 lg:64 py-8 sm:py-16">
-      <Section
-        title="SelectTTS: Synthesizing anyone's voice via discrete unit-based frame selection"
-        body=""
-      />
-      <Section
-        title="Abstract"
-        body="We design a simple alternative to this. We propose SelectTTS, a novel method to select the appropriate frames from the target speaker and decode using frame-level self-supervised learning (SSL) features. We show that this approach can effectively capture speaker characteristics for unseen speakers, and achieves comparable results to other multi-speaker TTS frameworks in both objective and subjective metrics. With SelectTTS, we show that frame selection from the target speaker's speech is a direct way to achieve generalization in unseen speakers."
+    <Section
+  title="SelectTTS: Synthesizing Anyone’s Voice via Discrete Unit-Based Frame Selection"
+  body=" Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman"
+/>
+<div className="mt-4">
+          <p className="text-sm sm:text-md italic text-justify">
+          *Equal contribution
+          </p>
+        </div>
+        <div>
+     
+      {/* Button 1: Internal Link to Another Page within the App */}
+      <Link href="">
+        <button>paper pre-print</button>
+      </Link>
 
-      />
-
+      {/* Button 2: External Link to Google */}
+      <a href="" target="_blank" rel="noopener noreferrer">
+        <button>official implementation</button>
+      </a>
+    </div>
       <Section
         title="Purposed Method"
       >
