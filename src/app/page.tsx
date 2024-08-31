@@ -30,7 +30,7 @@ function getRowDataMOS(dataset: string, spk: string, num: string) {
 
 
   return {
-    "Ground Truth": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
+    "Ground Truth": <Audio path={`samples/ground_truth/${spk}/${file_name}.wav`} />,
     "X-TTS": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
     "VALL-E": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
     "YourTTS": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />,
@@ -60,11 +60,11 @@ function getRowDataRefdur(dataset: string, spk: string, num: string) {
 
 
   return {
-    "Ground Truth": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
-    "30 seconds": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
-    "1 minute": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
-    "3 minutes": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />,
-    "5 Minutes": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />
+    "Ground Truth": <Audio path={`samples/ground_truth/${spk}/${file_name}.wav`} />,
+    "30 seconds": <Audio path={`samples/${dataset}/duration/30sec/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />,
+    "1 minute": <Audio path={`samples/${dataset}/duration/1min/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />,
+    "3 minutes": <Audio path={`samples/${dataset}/duration/3min/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />,
+    "5 Minutes": <Audio path={`samples/${dataset}/duration/5min/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />
   
   }
 }
@@ -74,9 +74,9 @@ function getRowDataPrematch(dataset: string, spk: string, num: string) {
 
 
   return {
-    "Ground Truth": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
-    "Vocoder (no prematched fine-tuning)": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
-    "Vocoder (prematched fine-tuning)": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />
+    "Ground Truth": <Audio path={`samples/ground_truth/${spk}/${file_name}.wav`} />,
+    "Vocoder (no prematched fine-tuning)": <Audio path={`samples/${dataset}/fine_tuned/selectTTS_without_finetuning/${spk}/${file_name}.wav`} />,
+    "Vocoder (prematched fine-tuning)": <Audio path={`samples/${dataset}/fine_tuned/selectTTS_with_finetuning/${spk}/${file_name}.wav`} />
 
   }
 }
@@ -87,11 +87,11 @@ function getRowDataTempSampl(dataset: string, spk: string, num: string) {
 
 
   return {
-    "Ground Truth": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
-    "SelectTTS (only inv k-means (rand))": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
-    "SelectTTS (only inv k-means (avg))": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
-    "SelectTTS (inv k-means (rand) + sub-match)": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
-    "SelectTTS (inv k-means (avg) + sub-match)": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />
+    "Ground Truth": <Audio path={`samples/ground_truth/${spk}/${file_name}.wav`} />,
+    "SelectTTS (only inv k-means (rand))": <Audio path={`samples/${dataset}/selection_strategy/inv_kmeans_rand/${spk}/${file_name}.wav`} />,
+    "SelectTTS (only inv k-means (avg))": <Audio path={`samples/${dataset}/selection_strategy/inv_kmeans_avg/${spk}/${file_name}.wav`} />,
+    "SelectTTS (inv k-means (rand) + sub-match)": <Audio path={`samples/${dataset}/selection_strategy/inv_kmeans_rand_subseq/${spk}/${file_name}.wav`} />,
+    "SelectTTS (inv k-means (avg) + sub-match)": <Audio path={`samples/${dataset}/selection_strategy/inv_kmeans_avg_subseq/${spk}/${file_name}.wav`} />
     
   }
 }
@@ -148,21 +148,25 @@ export default function Home() {
       >
         <Table
           data={[
-            getRowDataRefdur("generated_samples", "4446", "0000"),
-            getRowDataRefdur("generated_samples", "4446", "0010"),
-            getRowDataRefdur("generated_samples", "4446", "0016"),
+            getRowDataRefdur("demo_samples", "7176", "0013"),
+            getRowDataRefdur("demo_samples", "1320", "0014"),
+            getRowDataRefdur("demo_samples", "4507", "0004"),
+            getRowDataRefdur("demo_samples", "3570", "0002"),
+            getRowDataRefdur("demo_samples", "2300", "0005"),
+            getRowDataRefdur("demo_samples", "4970", "0012")
           ]}
         />
       </Section>
      
       <Section
-        title="Effect of temperature sampling"
+        title="Effect of different frame selection strategies"
       >
         <Table
           data={[
-            getRowDataTempSampl("generated_samples", "4446", "0000"),
-            getRowDataTempSampl("generated_samples", "4446", "0010"),
-            getRowDataTempSampl("generated_samples", "4446", "0016"),
+            getRowDataTempSampl("demo_samples", "8455", "0013"),
+            getRowDataTempSampl("demo_samples", "5142", "0008"),
+            getRowDataTempSampl("demo_samples", "4970", "0012"),
+            getRowDataTempSampl("demo_samples", "7729", "0015")
           ]}
         />
       </Section>
@@ -172,9 +176,15 @@ export default function Home() {
       >
         <Table
           data={[
-            getRowDataPrematch("generated_samples", "4446", "0000"),
-            getRowDataPrematch("generated_samples", "4446", "0010"),
-            getRowDataPrematch("generated_samples", "4446", "0016"),
+            getRowDataPrematch("demo_samples", "4446", "0010"),
+            getRowDataPrematch("demo_samples", "7729", "0019"),
+            getRowDataPrematch("demo_samples", "7729", "0011"),
+            getRowDataPrematch("demo_samples", "3570", "0008"),
+            getRowDataPrematch("demo_samples", "6829", "0009"),
+            getRowDataPrematch("demo_samples", "2300", "0005"),
+            getRowDataPrematch("demo_samples", "7127", "0000"),
+            getRowDataPrematch("demo_samples", "4970", "0015"),
+            
           ]}
         />
       </Section>
