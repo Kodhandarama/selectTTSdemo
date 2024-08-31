@@ -102,9 +102,9 @@ export default function Home() {
     <div className="flex flex-col gap-y-8 mx-auto px-8 md:px-48 lg:64 py-8 sm:py-16">
     <Section
   title="SelectTTS: Synthesizing Anyone’s Voice via Discrete Unit-Based Frame Selection"
-  body=" Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman"
+  body=" Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman" 
 />
-<div className="mt-1">
+<div className="mt-0">
           <p className="text-sm sm:text-md italic text-justify">
           *Equal contribution
           </p>
@@ -128,13 +128,13 @@ export default function Home() {
         <img
     src="figures/Tokenizers.png"  // Replace with the path to your second image
     alt="Tokenizers"
-    style={{ width: '20%', maxWidth: '500px', height: 'auto' }}
+    style={{ width: '30%', maxWidth: '500px', height: 'auto' }}
 
   />
   <img
     src="figures/SelectTTS_v1.png"
     alt="SelectTTS"
-    style={{ width: '100%', maxWidth: '800px', height: 'auto' }}
+    style={{ width: '100%', maxWidth: '600px', height: 'auto' }}
   />
   
 </div>
