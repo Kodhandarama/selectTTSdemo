@@ -104,14 +104,12 @@ export default function Home() {
   title="SelectTTS: Synthesizing Anyone’s Voice via Discrete Unit-Based Frame Selection"
   body=" Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman"
 />
-<div className="mt-4">
+<div className="mt-1">
           <p className="text-sm sm:text-md italic text-justify">
           *Equal contribution
           </p>
         </div>
         <div>
-     
-
       {/* Button 2: External Link to Google */}
       <Link href="/about" passHref>
         <button style={{ marginRight: '10px' }}>Paper pre-print</button>
@@ -126,8 +124,20 @@ export default function Home() {
       <Section
         title="Purposed Method"
       >
-        <img src="figures/SelectTTS_v1.png" alt="SelectTTS" style={{ width: '100%', maxWidth: '500px', height: 'auto' }}  />
-      
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
+        <img
+    src="figures/Tokenizers.png"  // Replace with the path to your second image
+    alt="Tokenizers"
+    style={{ width: '20%', maxWidth: '500px', height: 'auto' }}
+
+  />
+  <img
+    src="figures/SelectTTS_v1.png"
+    alt="SelectTTS"
+    style={{ width: '100%', maxWidth: '800px', height: 'auto' }}
+  />
+  
+</div>
         <div className="mt-4">
           <p className="text-sm sm:text-md italic text-justify">
           Proposed SelectTTS framework with the frame-selection method. In the frame selection, frames z<sub>1</sub>,z<sub>2</sub>,z<sub>3</sub>,z<sub>4</sub> are chosen through subsequence matching and frames z<sub>7</sub>, z<sub>9</sub>,z<sub>6</sub> and z<sub>10</sub> are chosen via inverse k-means sampling
