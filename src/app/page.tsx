@@ -102,13 +102,16 @@ export default function Home() {
     <div className="flex flex-col gap-y-8 mx-auto px-8 md:px-48 lg:64 py-8 sm:py-16">
     <Section
   title="SelectTTS: Synthesizing Anyone’s Voice via Discrete Unit-Based Frame Selection"
-  body=" Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman" 
+  body="" 
 />
-<div className="mt-0">
-          <p className="text-sm sm:text-md italic text-justify leading-tight">
+<div className="flex flex-col mt-0">
+        <p className="text-sm sm:text-md text-justify">
+          Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman
+        </p>
+        <p className="text-sm sm:text-md italic text-justify mt-[-4px]">
           *Equal contribution
-          </p>
-        </div>
+        </p>
+      </div>
         <div>
       {/* Button 2: External Link to Google */}
       <Link href="/about" passHref>
@@ -134,7 +137,7 @@ export default function Home() {
   <img
     src="figures/SelectTTS_v1.png"
     alt="SelectTTS"
-    style={{ width: '100%', maxWidth: '600px', height: 'auto' }}
+    style={{ width: '100%', maxWidth: '700px', height: 'auto' }}
   />
   
 </div>
