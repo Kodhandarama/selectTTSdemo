@@ -116,6 +116,8 @@ export default function Home() {
       <Link href="/about" passHref>
         <button style={{ marginRight: '10px' }}>Paper pre-print</button>
       </Link>
+
+      
       {/* Button 2: External Link to Google */}
       <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
         <button>Official implementation - coming soon</button>
@@ -188,15 +190,14 @@ export default function Home() {
       >
         <Table
           data={[
-            getRowDataPrematch("demo_samples", "4446", "0010"),
+            // getRowDataPrematch("demo_samples", "4446", "0010"), NOT SO GOOD
             getRowDataPrematch("demo_samples", "7729", "0019"),
             getRowDataPrematch("demo_samples", "7729", "0011"),
-            getRowDataPrematch("demo_samples", "3570", "0008"),
+            // getRowDataPrematch("demo_samples", "3570", "0008"), NOT GOOD
             getRowDataPrematch("demo_samples", "6829", "0009"),
-            getRowDataPrematch("demo_samples", "2300", "0005"),
-            getRowDataPrematch("demo_samples", "7127", "0000"),
-            getRowDataPrematch("demo_samples", "4970", "0015"),
-            
+            // getRowDataPrematch("demo_samples", "2300", "0005"),
+            // getRowDataPrematch("demo_samples", "7127", "0000"),
+            getRowDataPrematch("demo_samples", "4970", "0015")            
           ]}
         />
       </Section>
