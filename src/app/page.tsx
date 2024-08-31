@@ -45,11 +45,12 @@ function getRowDataSMOS(dataset: string, spk: string, num: string) {
 
   return {
     "Target Speaker": <Audio path={`samples/${dataset}/ground_truth/${spk}/${file_name}.wav`} />,
+    "SelectTTS (no sub-sequence)": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />,
+    "SelectTTS (with sub-sequence)": <Audio path={`samples/${dataset}/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />,
     "X-TTS": <Audio path={`samples/${dataset}/xtts/${spk}/${file_name}.wav`} />,
     "VALL-E": <Audio path={`samples/${dataset}/valle_v2/${spk}/${file_name}.wav`} />,
-    "YourTTS": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />,
-    "SelectTTS (no sub-sequence)": <Audio path={`samples/${dataset}/selectTTS_no_subsmatch/${spk}/${file_name}.wav`} />,
-    "SelectTTS (with sub-sequence)": <Audio path={`samples/${dataset}/selectTTS_with_subsmatch/${spk}/${file_name}.wav`} />
+    "YourTTS": <Audio path={`samples/${dataset}/yourtts/${spk}/${file_name}.wav`} />
+    
   }
 }
 
@@ -111,7 +112,7 @@ export default function Home() {
       <Section
         title="Purposed Method"
       >
-        <img src="figures/SelectTTS_v1.png" alt="SelectTTS" />
+        <img src="figures/SelectTTS_v1.png" alt="SelectTTS" style={{ width: '100%', maxWidth: '500px', height: 'auto' }}  />
       
         <div className="mt-4">
           <p className="text-sm sm:text-md italic text-justify">
@@ -122,30 +123,24 @@ export default function Home() {
 
 
       <Section
-        title="Observe the naturalness :)"
+        title="Comparison with Baselines"
       >
         <Table
           data={[
+            getRowDataMOS("generated_samples", "7127", "0005"),
+            getRowDataMOS("generated_samples", "8455", "0013"),
+            getRowDataMOS("generated_samples", "7176", "0019"),
             getRowDataMOS("generated_samples", "4446", "0000"),
-            getRowDataMOS("generated_samples", "4446", "0010"),
-            getRowDataMOS("generated_samples", "4446", "0016"),
+            getRowDataMOS("generated_samples", "4992", "0015"),
+            getRowDataMOS("generated_samples", "5142", "0002")
+            
           ]}
         />
       </Section>
 
     
 
-      <Section
-        title="Observe the speaker similarity"
-      >
-        <Table
-          data={[
-            getRowDataMOS("generated_samples", "4446", "0000"),
-            getRowDataMOS("generated_samples", "4446", "0010"),
-            getRowDataMOS("generated_samples", "4446", "0016"),
-          ]}
-        />
-      </Section>
+     
 
 
       <Section
