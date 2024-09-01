@@ -125,7 +125,7 @@ export default function Home() {
       </a>
     </div>
       <Section
-        title="Purposed Method"
+        title="Proposed Method"
       >
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
         <img
