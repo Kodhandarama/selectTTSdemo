@@ -111,6 +111,9 @@ export default function Home() {
         <p className="text-sm sm:text-md italic text-justify mt-[-4px]">
           *Equal contribution
         </p>
+  <p className="text-sm sm:text-md italic text-justify mt-[-4px]">
+          Speech and Machine Learning Lab - The University of Texas at Dallas
+        </p>
       </div>
         <div>
       {/* Button 2: External Link to Google */}
