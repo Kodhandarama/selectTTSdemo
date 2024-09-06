@@ -117,7 +117,7 @@ export default function Home() {
       </div>
         <div>
       {/* Button 2: External Link to Google */}
-        <a href="https://arxiv.org/abs/2408.17432" target="_blank" rel="noopener noreferrer">
+        <Link href="https://arxiv.org/abs/2408.17432" passHref>
         <button style={{ marginRight: '10px' }}>Paper pre-print</button>
       </Link>
 
