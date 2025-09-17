@@ -105,15 +105,15 @@ export default function Home() {
   body="" 
 />
 <div className="flex flex-col mt-0">
-        <p className="text-sm sm:text-md text-justify">
-          Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman
-        </p>
-        <p className="text-sm sm:text-md italic text-justify mt-[-4px]">
-          *Equal contribution
-        </p>
-  <p className="text-sm sm:text-md italic text-justify mt-[-4px]">
-          Speech and Machine Learning Lab - The University of Texas at Dallas
-        </p>
+       <p className="text-lg sm:text-xl text-justify">
+  Ismail Rasim Ulgen*, Shreeram Suresh Chandra*, Junchen Lu, Berrak Sisman
+</p>
+<p className="text-md sm:text-lg italic text-justify mt-[-2px]">
+  *Equal contribution
+</p>
+<p className="text-md sm:text-lg italic text-justify mt-[-2px]">
+  SMILE Lab – Centre for Speech and Language Processing (CLSP) – Johns Hopkins University
+</p>
       </div>
         <div>
       {/* Button 2: External Link to Google */}
@@ -132,13 +132,13 @@ export default function Home() {
       >
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px' }}>
         <img
-    src="figures/Tokenizers.png"  // Replace with the path to your second image
+    src="figures/Tokenizers_print.png"  // Replace with the path to your second image
     alt="Tokenizers"
     style={{ width: '30%', maxWidth: '600px', height: 'auto' }}
 
   />
   <img
-    src="figures/SelectTTS_v1.png"
+    src="figures/SelectTTS_print.png"
     alt="SelectTTS"
     style={{ width: '100%', maxWidth: '700px', height: 'auto' }}
   />
