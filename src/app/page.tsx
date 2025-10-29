@@ -101,7 +101,7 @@ export default function Home() {
   return (
     <div className="flex flex-col gap-y-8 mx-auto px-8 md:px-48 lg:64 py-8 sm:py-16">
     <Section
-  title="SelectTTS: Synthesizing Anyone’s Voice via Discrete Unit-Based Frame Selection"
+  title="Text-to-Speech for Unseen Speakers via Low-Complexity Discrete Unit–Based Frame Selection"
   body="" 
 />
 <div className="flex flex-col mt-0">
